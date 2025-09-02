@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Para Mi Novia ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #fff;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 10px rgba(255, 105, 180, 0.8);
+        }
+
+        p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        button {
+            background-color: #ff6699;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            color: white;
+            box-shadow: 0 4px 8px rgba(255, 102, 153, 0.6);
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ff3366;
+        }
+
+        /* Corazones que caen */
+        .heart {
+            position: fixed;
+            bottom: 100%;
+            width: 30px;
+            height: 30px;
+            background-color: #ff3366;
+            transform: rotate(45deg);
+            animation-name: fall;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            opacity: 0.8;
+            z-index: 9999;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: #ff3366;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -15px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: 15px;
+            top: 0;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(45deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(100vh) rotate(45deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Para Mi Amor ❤️</h1>
+    <p id="mensaje">Eres la persona más especial en mi vida.</p>
+    <button id="boton">Hazme sonreír</button>
+
+    <script>
+        // Frases románticas inspiradas en Tim Burton, Wattpad y frase especial
+        const mensajes = [
+            "No te ofendas, pero te equivocas. No estamos en caminos separados, tú eres mi camino, y siempre vas a ser mi camino. Sé que hay mil razones para no estar juntos, pero estoy harto de ellas. Hay que hacer una elección, y yo te elijo a ti.",
+            "Como en un cuento de Tim Burton, nuestra historia es un poco extraña, un poco oscura, pero llena de magia y amor verdadero.",
+            "Eres la luna en mi noche oscura, la luz que brilla entre sombras y miedos.",
+            "En un mundo de personajes rotos, tú eres mi perfecto desorden.",
+            "Cada palabra que te escribo es un hechizo para que nunca te alejes de mí.",
+            "Nuestro amor no es común, es un poco extraño, como los mejores libros de Wattpad que nunca quieres dejar de leer.",
+            "Aunque el mundo sea un lugar extraño, tú eres mi lugar seguro, mi hogar.",
+            "Amarte es como vivir en una película de Burton: oscuro, loco, y maravillosamente único.",
+            "No necesito un final feliz, solo necesito tú a mi lado, como en esos relatos que robaban mi aliento.",
+            "Tus ojos tienen la magia que transforma mis días más grises en fantasías encantadas."
+        ];
+
+        const mensajeElemento = document.getElementById('mensaje');
+        const boton = document.getElementById('boton');
+
+        boton.addEventListener('click', () => {
+            const randomIndex = Math.floor(Math.random() * mensajes.length);
+            mensajeElemento.textContent = mensajes[randomIndex];
+        });
+
+        // Crear corazones que caen
+        function crearCorazon() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+
+            // Posición horizontal aleatoria
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+
+            // Duración y velocidad aleatoria para que caigan distinto
+            const duracion = 4000 + Math.random() * 3000;
+            heart.style.animationDuration = duracion + 'ms';
+
+            document.body.appendChild(heart);
+
+            // Eliminar corazón después de que caiga
+            setTimeout(() => {
+                heart.remove();
+            }, duracion);
+        }
+
+        // Crear corazones continuamente
+        setInterval(crearCorazon, 300);
+    </script>
+</body>
+</html>
